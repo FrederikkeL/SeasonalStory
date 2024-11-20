@@ -1,0 +1,6 @@
+@SeasonalStoryREST_HostAddress = http://localhost:5122
+
+GET {{SeasonalStoryREST_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
