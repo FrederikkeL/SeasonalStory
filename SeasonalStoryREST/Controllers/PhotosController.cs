@@ -25,7 +25,7 @@ namespace SeasonalStoryREST.Controllers
         {
             try
             {
-                photo.Validate();
+                photo.ValidateImage();
             }
             catch(Exception e)
             {

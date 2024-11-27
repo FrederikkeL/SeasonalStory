@@ -24,9 +24,11 @@ namespace SeasonalStory
 
         public async Task<Photo> Add(Photo photo)
         {
-            photo.Validate();
+            photo.ValidateUploadedImage();
 
             photo.Image = await ImageService.ConvertToByteArray(photo.UploadedImage);
+
+            photo.ValidateImage();
 
             using (var context = new SSDbContext())
             {

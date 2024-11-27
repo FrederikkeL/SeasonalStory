@@ -16,27 +16,30 @@ namespace SeasonalStory
         public Temperature PhotoTemp { get; set; }
 
         [NotMapped]
-        public IFormFile? UploadedImage { get; set; }
+        public IFormFile UploadedImage { get; set; }
 
-        public byte[]? Image { get; set; }
+        public byte[] Image { get; set; }
 
         
 
-        public void ValidateImageFile()
+        public void ValidateUploadedImage()
         {
-            //if (ImageFile == null)
-            //{
-            //    throw new NullReferenceException("Imagefile cannot be null");
-            //}
-            //if (ImageFile == "")
-            //{
-            //    throw new ArgumentException("Imagefile cannot be empty");
-            //}
+            if (UploadedImage == null)
+            {
+                throw new NullReferenceException("UploadedImage cannot be null");
+            }
+            if (UploadedImage.Length > 10 * 1024 * 1024)
+            {
+                throw new ArgumentException("UploadedImage cannot be bigger than 10 MB");
+            }
         }
 
-        public void Validate()
+        public void ValidateImage()
         {
-            ValidateImageFile();
+            if (Image == null)
+            {
+                throw new NullReferenceException("Image cannot be null");
+            }
         }
     }
 }

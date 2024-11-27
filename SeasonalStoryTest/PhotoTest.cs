@@ -6,16 +6,15 @@ namespace SeasonalStoryTest
     [TestClass]
     public class PhotoTest
     {
-        //Photo validPhoto = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, ImageFile = "/TestPhoto/photo1.png" };
-        //Photo ImageFileNull = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, ImageFile = null };
-        //Photo ImageFileEmpty = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, ImageFile = "" };
+        Photo validPhoto = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, Image = new byte[] {1, 1, 1, 1, 1, 2 } };
+        Photo UploadedImageNull = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, UploadedImage = null};
+        Photo ImageNull = new Photo() { PhotoTemp = Temperature.BelowZero, PhotoSeason = Season.Winter, Image = null };
 
-        //[TestMethod]
-        //public void ValidateImageFileTest()
-        //{
-        //    validPhoto.Validate();
-        //    Assert.ThrowsException<NullReferenceException>(() => ImageFileNull.Validate());
-        //    Assert.ThrowsException<ArgumentException>(() => ImageFileEmpty.Validate());
-        //}
+        [TestMethod]
+        public void ValidateUploadedImageTest()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => UploadedImageNull.ValidateUploadedImage());
+            Assert.ThrowsException<NullReferenceException>(() => ImageNull.ValidateImage());
+        }
     }
 }
