@@ -1,8 +1,12 @@
+using SeasonalStory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<PhotosRepo>(new PhotosRepo());
 
 var app = builder.Build();
 

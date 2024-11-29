@@ -9,15 +9,25 @@ using System.Threading.Tasks;
 namespace SeasonalStory.Services
 {
     public class ImageService
-    { 
-
-        public async Task<byte[]> ConvertToByteArray(IFormFile formFile)
+    {
+        public byte[] ConvertToByteArray(IFormFile tempUploadedFile)
         {
-            using (var memoryStream = new MemoryStream())
+            // Get a temporary file path
+            var tempFilePath = Path.Combine(Path.GetTempPath(), tempUploadedFile.FileName);
+
+            // Save the file to the temporary path
+            using (FileStream fs = new FileStream(tempFilePath, FileMode.Create))
             {
-                await formFile.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
+                tempUploadedFile.CopyTo(fs);
             }
+
+            // Read the file bytes
+            byte[] fileBytes = File.ReadAllBytes(tempFilePath);
+
+            // Delete the temporary file
+            File.Delete(tempFilePath);
+
+            return fileBytes;
         }
     }
 }

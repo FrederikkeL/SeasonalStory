@@ -13,22 +13,22 @@ namespace SeasonalStory
 {
     public class PhotosRepo
     {
-        private SSDbContext Context { get; set; }
+        
         private ImageService ImageService { get; set; }
 
-        public PhotosRepo(SSDbContext dbContext, ImageService iService)
+        public PhotosRepo()
         {
-            Context = dbContext;
-            ImageService = iService;
         }
 
         public async Task<Photo> Add(Photo photo)
         {
-            photo.ValidateUploadedImage();
+            //photo.ValidateUploadedImage();
 
-            photo.Image = await ImageService.ConvertToByteArray(photo.UploadedImage);
+            //photo.Image = photo.UploadedImage;
 
-            photo.ValidateImage();
+            //photo.Image = ImageService.ConvertToByteArray(photo.UploadedImage);
+
+            //photo.ValidateImage();
 
             using (var context = new SSDbContext())
             {

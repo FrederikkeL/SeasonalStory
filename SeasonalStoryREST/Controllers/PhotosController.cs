@@ -19,21 +19,28 @@ namespace SeasonalStoryREST.Controllers
 
         // POST api/<PhotosController>
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        
         [HttpPost]
         public ActionResult<Photo> Post([FromBody] Photo photo)
         {
-            try
-            {
-                photo.ValidateImage();
-            }
-            catch(Exception e)
-            {
-                if (e.Message != null)
-                    return BadRequest("Not Good");
-            }
+            Console.WriteLine("test");
+            //try
+            //{
+            //    photo.ValidateImage();
+            //}
+            //catch(Exception e)
+            //{
+            //    if (e.Message != null)
+            //        return BadRequest("Not Good");
+            //}
             Photo newPhoto = _repo.Add(photo).Result;
             return Created("", newPhoto);
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "value";
         }
     }
 }

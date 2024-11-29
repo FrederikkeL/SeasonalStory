@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.ComponentModel;
+using System.Globalization;
+
 
 namespace SeasonalStory
 {
@@ -15,31 +17,31 @@ namespace SeasonalStory
         public Season PhotoSeason { get; set; }
         public Temperature PhotoTemp { get; set; }
 
-        [NotMapped]
-        public IFormFile UploadedImage { get; set; }
+        //[NotMapped]
+        //public string UploadedImage { get; set; }
 
-        public byte[] Image { get; set; }
+        public string? Billede { get; set; }
 
         
 
-        public void ValidateUploadedImage()
-        {
-            if (UploadedImage == null)
-            {
-                throw new NullReferenceException("UploadedImage cannot be null");
-            }
-            if (UploadedImage.Length > 10 * 1024 * 1024)
-            {
-                throw new ArgumentException("UploadedImage cannot be bigger than 10 MB");
-            }
-        }
+        //public void ValidateUploadedImage()
+        //{
+        //    if (UploadedImage == null)
+        //    {
+        //        throw new NullReferenceException("UploadedImage cannot be null");
+        //    }
+        //    if (UploadedImage.Length > 10 * 1024 * 1024)
+        //    {
+        //        throw new ArgumentException("UploadedImage cannot be bigger than 10 MB");
+        //    }
+        //}
 
-        public void ValidateImage()
-        {
-            if (Image == null)
-            {
-                throw new NullReferenceException("Image cannot be null");
-            }
-        }
+        //public void ValidateImage()
+        //{
+        //    if (Image == null)
+        //    {
+        //        throw new NullReferenceException("Image cannot be null");
+        //    }
+        //}
     }
 }
