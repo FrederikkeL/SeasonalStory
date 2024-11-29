@@ -15,13 +15,16 @@ namespace SeasonalStory
         public int Id { get; set; }
         public Season PhotoSeason { get; set; }
         public Temperature PhotoTemp { get; set; }
+        public byte[]? Billede { get; set; }
 
-        //[NotMapped]
-        //public string UploadedImage { get; set; }
+        public override string ToString()
+        {
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(PhotoSeason)}={PhotoSeason.ToString()}, {nameof(PhotoTemp)}={PhotoTemp.ToString()}, {nameof(Billede)}={Billede}}}";
+        }
 
-        public string? Billede { get; set; }
 
-        
+
+
 
         //public void ValidateUploadedImage()
         //{

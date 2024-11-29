@@ -29,8 +29,8 @@ namespace SeasonalStory.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Billede")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Billede")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PhotoSeason")
                         .HasColumnType("int");

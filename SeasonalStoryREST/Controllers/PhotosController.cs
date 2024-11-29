@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeasonalStory;
+using SeasonalStory.Enums;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,23 +20,35 @@ namespace SeasonalStoryREST.Controllers
 
         // POST api/<PhotosController>
         [ProducesResponseType(StatusCodes.Status201Created)]
-        
         [HttpPost]
-        public ActionResult<Photo> Post([FromBody] Photo photo)
+        public async Task<ActionResult<string>> Post([FromForm] IFormFile billede, [FromForm] Season PhotoSeason, [FromForm] Temperature PhotoTemp)
         {
-            Console.WriteLine("test");
-            //try
-            //{
-            //    photo.ValidateImage();
-            //}
-            //catch(Exception e)
-            //{
-            //    if (e.Message != null)
-            //        return BadRequest("Not Good");
-            //}
-            Photo newPhoto = _repo.Add(photo).Result;
-            return Created("", newPhoto);
+            if (billede == null || billede.Length == 0)
+            {
+                return BadRequest("No image file was uploaded.");
+            }
+
+            byte[] imageData;
+            using (var memoryStream = new MemoryStream())
+            {
+                await billede.CopyToAsync(memoryStream);
+                imageData = memoryStream.ToArray(); // Convert the file into a byte array
+            }
+
+            // Create a new Photo object
+            var photo = new Photo
+            {
+                PhotoSeason = PhotoSeason,
+                PhotoTemp = PhotoTemp,
+                Billede = imageData
+            };
+
+            // Save the photo to the database (assuming _repo.Add handles the database saving)
+            var newPhoto = await _repo.Add(photo);
+
+            return Created("", newPhoto); // Return the newly created photo
         }
+
 
         [HttpGet]
         public string Get()

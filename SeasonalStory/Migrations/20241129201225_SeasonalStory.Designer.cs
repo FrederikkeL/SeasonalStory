@@ -11,7 +11,7 @@ using SeasonalStory.EFDbContext;
 namespace SeasonalStory.Migrations
 {
     [DbContext(typeof(SSDbContext))]
-    [Migration("20241129183533_SeasonalStory")]
+    [Migration("20241129201225_SeasonalStory")]
     partial class SeasonalStory
     {
         /// <inheritdoc />
@@ -32,8 +32,8 @@ namespace SeasonalStory.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Billede")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Billede")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PhotoSeason")
                         .HasColumnType("int");

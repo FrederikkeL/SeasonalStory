@@ -18,7 +18,7 @@ namespace SeasonalStory.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhotoSeason = table.Column<int>(type: "int", nullable: false),
                     PhotoTemp = table.Column<int>(type: "int", nullable: false),
-                    Billede = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Billede = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
