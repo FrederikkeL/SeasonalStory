@@ -12,9 +12,11 @@ namespace SeasonalStory.EFDbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Data Source=mssql3.unoeuro.com;Initial Catalog=tinylink_se_db_seasonalstory;User ID=tinylink_se;Password=dAp6gFkE93wnzmy5Bhxe;TrustServerCertificate=true");
+            options.UseSqlServer(@"data source=Emmas-PC;initial catalog=myDatabase;trusted_connection=true;trustServerCertificate=true");
         }
 
         public DbSet<Photo> Photos { get; set; }
+
+        public DbSet<Temperature> Temperatures { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SeasonalStory.Enums;
 
-public enum Temperature
+public enum TemperatureIntervals
 {
     BelowZero = 0, 
     OneToTwelve = 1,
