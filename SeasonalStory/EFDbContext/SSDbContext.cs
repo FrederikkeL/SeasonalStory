@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SeasonalStory.EFDbContext;
-
 namespace SeasonalStory.EFDbContext
 {
     public class SSDbContext : DbContext
@@ -11,7 +9,9 @@ namespace SeasonalStory.EFDbContext
             options.UseSqlServer(@"Data Source=mssql3.unoeuro.com;Initial Catalog=tinylink_se_db_seasonalstory;User ID=tinylink_se;Password=dAp6gFkE93wnzmy5Bhxe;TrustServerCertificate=true");
         }
 
-    public DbSet<Photo> Photos { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
-    public DbSet<Temperature> Temperatures { get; set; }
+        public DbSet<Temperature> Temperatures { get; set; }
+
+    }
 }
