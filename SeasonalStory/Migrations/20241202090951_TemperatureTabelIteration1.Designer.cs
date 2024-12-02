@@ -12,8 +12,8 @@ using SeasonalStory.EFDbContext;
 namespace SeasonalStory.Migrations
 {
     [DbContext(typeof(SSDbContext))]
-    [Migration("20241129172801_AddedTemperature")]
-    partial class AddedTemperature
+    [Migration("20241202090951_TemperatureTabelIteration1")]
+    partial class TemperatureTabelIteration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,7 @@ namespace SeasonalStory.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
+                    b.Property<byte[]>("Billede")
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PhotoSeason")
