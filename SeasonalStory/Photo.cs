@@ -14,7 +14,7 @@ namespace SeasonalStory
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public Season PhotoSeason { get; set; }
-        public Temperature PhotoTemp { get; set; }
+        public TemperatureIntervals PhotoTemp { get; set; }
         public byte[]? Billede { get; set; }
 
         public override string ToString()

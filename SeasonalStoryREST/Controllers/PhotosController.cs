@@ -21,7 +21,7 @@ namespace SeasonalStoryREST.Controllers
         // POST api/<PhotosController>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
-        public async Task<ActionResult<string>> Post([FromForm] IFormFile billede, [FromForm] Season PhotoSeason, [FromForm] Temperature PhotoTemp)
+        public async Task<ActionResult<string>> Post([FromForm] IFormFile billede, [FromForm] Season PhotoSeason, [FromForm] TemperatureIntervals PhotoTemp)
         {
             if (billede == null || billede.Length == 0)
             {
