@@ -13,9 +13,8 @@ namespace SeasonalStoryTest
         [TestMethod]
         public void AddTest()
         {
-            
-        }
+            //Vi mangler info om hvordan dette gøres. Vi afventer svar fra Henrik.
 
-    
+        }
     }
 }

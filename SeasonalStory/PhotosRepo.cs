@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SeasonalStory.EFDbContext;
-using SeasonalStory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +12,13 @@ namespace SeasonalStory
 {
     public class PhotosRepo
     {
-        
-        private ImageService ImageService { get; set; }
-
         public PhotosRepo()
         {
         }
 
         public async Task<Photo> Add(Photo photo)
         {
-            //photo.ValidateUploadedImage();
-
-            //photo.Image = photo.UploadedImage;
-
-            //photo.Image = ImageService.ConvertToByteArray(photo.UploadedImage);
-
-            //photo.ValidateImage();
+            //photo.Validate();
 
             using (var context = new SSDbContext())
             {

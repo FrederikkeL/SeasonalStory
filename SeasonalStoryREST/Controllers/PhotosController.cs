@@ -21,9 +21,9 @@ namespace SeasonalStoryREST.Controllers
         // POST api/<PhotosController>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
-        public async Task<ActionResult<string>> Post([FromForm] IFormFile billede, [FromForm] Season PhotoSeason, [FromForm] TemperatureIntervals PhotoTemp)
+        public async Task<ActionResult<string>> Post([FromForm] IFormFile UploadedImage, [FromForm] Season PhotoSeason, [FromForm] TemperatureIntervals PhotoTemp)
         {
-            if (billede == null || billede.Length == 0)
+            if (UploadedImage == null || UploadedImage.Length == 0)
             {
                 return BadRequest("No image file was uploaded.");
             }
@@ -31,7 +31,7 @@ namespace SeasonalStoryREST.Controllers
             byte[] imageData;
             using (var memoryStream = new MemoryStream())
             {
-                await billede.CopyToAsync(memoryStream);
+                await UploadedImage.CopyToAsync(memoryStream);
                 imageData = memoryStream.ToArray(); // Convert the file into a byte array
             }
 
@@ -40,10 +40,9 @@ namespace SeasonalStoryREST.Controllers
             {
                 PhotoSeason = PhotoSeason,
                 PhotoTemp = PhotoTemp,
-                Billede = imageData
+                UploadedImage = imageData
             };
 
-            // Save the photo to the database (assuming _repo.Add handles the database saving)
             var newPhoto = await _repo.Add(photo);
 
             return Created("", newPhoto); // Return the newly created photo
