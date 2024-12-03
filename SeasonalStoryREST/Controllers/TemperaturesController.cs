@@ -7,11 +7,11 @@ namespace SeasonalStoryREST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TemperatureController : ControllerBase
+    public class TemperaturesController : ControllerBase
     {
         private readonly TemperatureRepo _repo;
 
-        public TemperatureController(TemperatureRepo repo)
+        public TemperaturesController(TemperatureRepo repo)
         {
             _repo = repo;
         }
@@ -25,10 +25,12 @@ namespace SeasonalStoryREST.Controllers
         }
 
         // POST api/<TempController>
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
-        public void Post([FromBody] Temperature newTemperature)
+        public async Task<ActionResult<string>> Post([FromBody] Temperature tempareture)
         {
-            _repo.AddTemperature(newTemperature);
+            var newTemperature = await _repo.AddTemperature(tempareture);
+            return Created("", newTemperature);
         }
     }
 }
