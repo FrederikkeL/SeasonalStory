@@ -12,8 +12,19 @@ namespace SeasonalStory
 {
     public class PhotosRepo
     {
+        List<Photo> photos = new List<Photo>();
+
         public PhotosRepo()
         {
+        }
+
+        public async Task<IEnumerable<Photo>> Get()
+        {
+            using (var context = new SSDbContext())
+            {
+                photos = await context.Set<Photo>().AsNoTracking().ToListAsync();
+            }
+            return photos;
         }
 
         public async Task<Photo> Add(Photo photo)

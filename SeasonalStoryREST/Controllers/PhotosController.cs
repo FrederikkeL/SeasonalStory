@@ -17,6 +17,19 @@ namespace SeasonalStoryREST.Controllers
             _repo = repo;
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Photo>>> Get()
+        {
+            IEnumerable<Photo> result = await _repo.Get();
+
+            if (result.Count() < 1)
+            {
+                return NotFound("No photos found");
+            }
+            return Ok(result);
+        }
 
         // POST api/<PhotosController>
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -46,13 +59,6 @@ namespace SeasonalStoryREST.Controllers
             var newPhoto = await _repo.Add(photo);
 
             return Created("", newPhoto); // Return the newly created photo
-        }
-
-
-        [HttpGet]
-        public string Get()
-        {
-            return "value";
         }
     }
 }
