@@ -19,6 +19,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<PhotosRepo>(new PhotosRepo());
+builder.Services.AddSingleton<TemperatureRepo>(new TemperatureRepo());
+
 
 var app = builder.Build();
 

@@ -6,6 +6,11 @@ public class TemperatureRepo
 {
     private readonly SSDbContext _dbContext;
 
+    public TemperatureRepo()
+    {
+        _dbContext = new SSDbContext();
+    }
+
     public TemperatureRepo(SSDbContext dbContext)
     {
         _dbContext = dbContext;
