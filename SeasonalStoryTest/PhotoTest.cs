@@ -6,7 +6,7 @@ namespace SeasonalStoryTest
     [TestClass]
     public class PhotoTest
     {
-        Photo validPhoto = new Photo() { PhotoTemp = TemperatureIntervals.BelowZero, PhotoSeason = Season.Winter, UploadedImage = new byte[] { 1, 1, 1, 1, 1, 2 } };
+        Photo validPhoto = new Photo() { PhotoTemp = TemperatureIntervals.BelowZero, PhotoSeason = Season.Winter, UploadedImage = "test" };
         Photo ImageNull = new Photo() { PhotoTemp = TemperatureIntervals.BelowZero, PhotoSeason = Season.Winter, UploadedImage = null };
 
         [TestMethod]

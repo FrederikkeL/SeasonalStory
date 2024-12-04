@@ -15,12 +15,9 @@ namespace SeasonalStory
         public int Id { get; set; }
         public Season PhotoSeason { get; set; }
         public TemperatureIntervals PhotoTemp { get; set; }
-        public byte[]? UploadedImage { get; set; }
+        public string? UploadedImage { get; set; }
 
-        public override string ToString()
-        {
-            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(PhotoSeason)}={PhotoSeason.ToString()}, {nameof(PhotoTemp)}={PhotoTemp.ToString()}, {nameof(UploadedImage)}={UploadedImage}}}";
-        }
+        
 
         public void Validate()
         {
@@ -28,6 +25,11 @@ namespace SeasonalStory
             {
                 throw new NullReferenceException("Image cannot be null");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(PhotoSeason)}={PhotoSeason.ToString()}, {nameof(PhotoTemp)}={PhotoTemp.ToString()}, {nameof(UploadedImage)}={UploadedImage}}}";
         }
     }
 }
