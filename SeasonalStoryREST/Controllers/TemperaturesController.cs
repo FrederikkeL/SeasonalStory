@@ -27,15 +27,20 @@ namespace SeasonalStoryREST.Controllers
         // POST api/<TempController>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
-        public async Task<ActionResult<string>> Post([FromBody] int value)
+        public async Task<ActionResult<string>> Post([FromBody] TemperatureData data)
         {
             var temperature = new Temperature
             {
-                Value = value,
+                Value = data.Value,
                 Timestamp = DateTime.Now
             };
             var newTemperature = await _repo.AddTemperature(temperature);
             return Created("", newTemperature);
+        }
+
+        public class TemperatureData
+        {
+            public int Value { get; set; }
         }
     }
 }
