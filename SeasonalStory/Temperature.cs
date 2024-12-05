@@ -11,14 +11,7 @@ public class Temperature
     public int Value { get; set; }
     public DateTime Timestamp { get; set; }
 
-    public Temperature(int value)
-    {
-        Value = value;
-    }
-
-    public Temperature()
-    {
-    }
+ 
 
     public void ValidateValue()
     {
