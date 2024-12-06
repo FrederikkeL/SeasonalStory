@@ -59,14 +59,15 @@ namespace SeasonalStoryREST.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         [HttpDelete("{id}")]
-        public ActionResult<Photo> Delete(int id)
+        public async Task <ActionResult<Photo>> Delete(int id)
         {
             if (id == null) 
             { 
                 return NotFound(id); 
             }
+            Photo photo = await _repo.Delete(id);
 
-            return Ok(_repo.Delete(id));
+            return Ok(photo);
         }
     }
 }
