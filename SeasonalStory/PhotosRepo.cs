@@ -27,13 +27,35 @@ namespace SeasonalStory
             return photos;
         }
 
+        public async Task<Photo?> GetByID(int id)
+        {
+            using (var context = new SSDbContext())
+            {
+                return await context.Set<Photo>().FindAsync(id);
+            }
+        }
+
         public async Task<Photo> Add(Photo photo)
         {
-            //photo.Validate();
+            photo.Validate();
 
             using (var context = new SSDbContext())
             {
                 context.Set<Photo>().Add(photo);
+                await context.SaveChangesAsync();
+            }
+            return photo;
+        }
+
+        public async Task<Photo?> Delete(int id)
+        {
+            Photo? photo = await GetByID(id);
+
+            if (photo == null) { return null; }
+
+            using (var context = new SSDbContext())
+            {
+                context.Set<Photo>().Remove(photo);
                 await context.SaveChangesAsync();
             }
             return photo;

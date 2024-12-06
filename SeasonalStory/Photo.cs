@@ -25,6 +25,10 @@ namespace SeasonalStory
             {
                 throw new NullReferenceException("Image cannot be null");
             }
+            if (UploadedImage == "")
+            {
+                throw new ArgumentException("Image cannot be empty");
+            }
         }
 
         public override string ToString()
