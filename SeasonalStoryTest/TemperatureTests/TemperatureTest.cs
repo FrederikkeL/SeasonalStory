@@ -32,7 +32,7 @@ namespace SeasonalStoryTest.TemperatureTests
 
         public void LegalValueTest(int value)
         {
-            Temperature temperature = new Temperature(value);
+            Temperature temperature = new Temperature() { Value = value };
             temperature.Validate();
         }
 
@@ -42,7 +42,7 @@ namespace SeasonalStoryTest.TemperatureTests
 
         public void IlegalValueTest(int value)
         {
-            Temperature temperature = new Temperature(value);
+            Temperature temperature = new Temperature() { Value = value };
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => temperature.Validate());
 
         }
