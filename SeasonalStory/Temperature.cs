@@ -24,5 +24,21 @@ public class Temperature
     {
         ValidateValue();   
     }
-  
+
+    public override string ToString()
+    {
+        return $"{{{nameof(Id)}={Id.ToString()}, {nameof(Value)}={Value.ToString()}, {nameof(Timestamp)}={Timestamp.ToString()}}}";
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Temperature temperature &&
+               Value == temperature.Value &&
+               Timestamp == temperature.Timestamp;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Value, Timestamp);
+    }
 }

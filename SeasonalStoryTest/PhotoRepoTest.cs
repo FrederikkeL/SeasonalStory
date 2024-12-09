@@ -28,7 +28,7 @@ namespace SeasonalStoryTest
             Assert.IsNull(await _photoRepo.GetByID(-1));
             Assert.IsNull(await _photoRepo.GetByID(0));
             //If the database gets cleared, first ID in list needs to be updated for the test to pass
-            Assert.IsNotNull(await _photoRepo.GetByID(11));
+            Assert.IsNotNull(await _photoRepo.GetByID(75));
         }
 
         [TestMethod]

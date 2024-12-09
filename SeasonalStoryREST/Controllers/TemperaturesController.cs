@@ -24,6 +24,16 @@ namespace SeasonalStoryREST.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("get-latest")]
+        public async Task<ActionResult<Temperature>> GetLatest()
+        {
+            var temperature = await _repo.GetLatest();
+            if (temperature == null) { return NotFound("Not found"); }
+            return Ok(temperature);
+        }
+
         // POST api/<TempController>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
