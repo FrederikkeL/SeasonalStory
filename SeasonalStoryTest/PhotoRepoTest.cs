@@ -23,6 +23,13 @@ namespace SeasonalStoryTest
         }
 
         [TestMethod]
+        public async Task GetQueryTest()
+        {
+            IEnumerable<Photo> photos = await _photoRepo.Get("season", 15);
+            Assert.IsNotNull(photos);
+        }
+
+        [TestMethod]
         public async Task GetByIDTest()
         {
             Assert.IsNull(await _photoRepo.GetByID(-1));
@@ -56,6 +63,69 @@ namespace SeasonalStoryTest
 
             Photo failedDelete = await _photoRepo.Delete(deletedPhoto.Id);
             Assert.IsNull(failedDelete);
+        }
+
+        [TestMethod]
+        public void GetSeasonTest()
+        {
+            Assert.AreEqual(Season.Winter, _photoRepo.GetSeason()); // Som Season.Winter er implementeret nu, skal der rettes i testen, når vi skifter sæson
+        }
+
+        [TestMethod]
+        [DataRow (-1, TemperatureIntervals.BelowZero)]
+        [DataRow (-2, TemperatureIntervals.BelowZero)]
+
+        [DataRow (0, TemperatureIntervals.ZeroToTwelve)]
+        [DataRow (1, TemperatureIntervals.ZeroToTwelve)]
+        [DataRow (11, TemperatureIntervals.ZeroToTwelve)]
+        [DataRow (12, TemperatureIntervals.ZeroToTwelve)]
+
+        [DataRow (13, TemperatureIntervals.ThirteenToEigthteen)]
+        [DataRow (14, TemperatureIntervals.ThirteenToEigthteen)]
+        [DataRow (17, TemperatureIntervals.ThirteenToEigthteen)]
+        [DataRow (18, TemperatureIntervals.ThirteenToEigthteen)]
+
+        [DataRow (19, TemperatureIntervals.NineteenToTwentythree)]
+        [DataRow (20, TemperatureIntervals.NineteenToTwentythree)]
+        [DataRow (22, TemperatureIntervals.NineteenToTwentythree)]
+        [DataRow (23, TemperatureIntervals.NineteenToTwentythree)]
+
+        [DataRow (24, TemperatureIntervals.TwentyfourToThirty)]
+        [DataRow (25, TemperatureIntervals.TwentyfourToThirty)]
+        [DataRow (29, TemperatureIntervals.TwentyfourToThirty)]
+        [DataRow (30, TemperatureIntervals.TwentyfourToThirty)]
+
+        [DataRow (31, TemperatureIntervals.AboveThirtyone)]
+        [DataRow (32, TemperatureIntervals.AboveThirtyone)]
+        
+
+
+        public void GetTemperatureGoodValuesTest(int temperature, TemperatureIntervals expected)
+        {
+            Assert.AreEqual(expected, _photoRepo.GetTemperature(temperature));
+           
+        }
+
+        [TestMethod]
+        [DataRow (1, TemperatureIntervals.BelowZero)]
+
+        [DataRow (-1, TemperatureIntervals.ZeroToTwelve)]
+        [DataRow (13, TemperatureIntervals.ZeroToTwelve)]
+
+        [DataRow (12, TemperatureIntervals.ThirteenToEigthteen)]
+        [DataRow (19, TemperatureIntervals.ThirteenToEigthteen)]
+
+        [DataRow (18, TemperatureIntervals.NineteenToTwentythree)]
+        [DataRow (24, TemperatureIntervals.NineteenToTwentythree)]
+
+        [DataRow (23, TemperatureIntervals.TwentyfourToThirty)]
+        [DataRow (31, TemperatureIntervals.TwentyfourToThirty)]
+
+        [DataRow (30, TemperatureIntervals.AboveThirtyone)]
+
+        public void GetTemperatureBadValuesTest(int temperature, TemperatureIntervals expected)
+        {
+            Assert.AreNotEqual(expected, _photoRepo.GetTemperature(temperature));
         }
     }
 }

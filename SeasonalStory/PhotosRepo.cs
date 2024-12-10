@@ -111,7 +111,7 @@ namespace SeasonalStory
                 case < 0:
                     return TemperatureIntervals.BelowZero;
                 case <= 12:
-                    return TemperatureIntervals.OneToTwelve;
+                    return TemperatureIntervals.ZeroToTwelve;
                 case <= 18:
                     return TemperatureIntervals.ThirteenToEigthteen;
                 case <= 23:

@@ -3,7 +3,7 @@
 public enum TemperatureIntervals
 {
     BelowZero = 0, 
-    OneToTwelve = 1,
+    ZeroToTwelve = 1,
     ThirteenToEigthteen = 2, 
     NineteenToTwentythree = 3, 
     TwentyfourToThirty = 4, 
