@@ -20,9 +20,10 @@ namespace SeasonalStoryREST.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Photo>>> Get()
+        public async Task<ActionResult<IEnumerable<Photo>>> Get([FromQuery] string? seasonEnabled, string? temperatureInterval)
         {
-            IEnumerable<Photo> result = await _repo.Get();
+            var temperatureToInt = Convert.ToInt32(temperatureInterval);
+            IEnumerable<Photo> result = await _repo.Get(seasonEnabled, temperatureToInt);
 
             if (result.Count() < 1)
             {
