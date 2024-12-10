@@ -22,8 +22,7 @@ namespace SeasonalStoryREST.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Photo>>> Get([FromQuery] string? seasonEnabled, string? temperatureInterval)
         {
-            var temperatureToInt = Convert.ToInt32(temperatureInterval);
-            IEnumerable<Photo> result = await _repo.Get(seasonEnabled, temperatureToInt);
+            IEnumerable<Photo> result = await _repo.Get(seasonEnabled, temperatureInterval);
 
             if (result.Count() < 1)
             {

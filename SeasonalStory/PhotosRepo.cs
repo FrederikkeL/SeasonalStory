@@ -20,7 +20,7 @@ namespace SeasonalStory
         {
         }
 
-        public async Task<IEnumerable<Photo>> Get(string? seasonEnabled = null, int? temperatureInterval = null)
+        public async Task<IEnumerable<Photo>> Get(string? seasonEnabled = null, string? temperatureInterval = null)
         {
             using (var context = new SSDbContext())
             {
@@ -32,7 +32,8 @@ namespace SeasonalStory
             }
             if (temperatureInterval != null)
             {
-                photos = photos.Where(p => p.PhotoTemp == GetTemperature(temperatureInterval));
+                var temperatureToInt = Convert.ToInt32(temperatureInterval);
+                photos = photos.Where(p => p.PhotoTemp == GetTemperature(temperatureToInt));
             }
             return photos;
         }
