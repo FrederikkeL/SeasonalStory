@@ -47,7 +47,9 @@ namespace SeasonalStoryREST.Controllers
             {
                 PhotoSeason = PhotoSeason,
                 PhotoTemp = PhotoTemp,
-                UploadedImage = UploadedImage
+                UploadedImage = UploadedImage,
+                DateAdded = DateOnly.FromDateTime(DateTime.Now)
+
             };
 
             var newPhoto = await _repo.Add(photo);

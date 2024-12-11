@@ -16,8 +16,8 @@ namespace SeasonalStory
         public Season PhotoSeason { get; set; }
         public TemperatureIntervals PhotoTemp { get; set; }
         public string? UploadedImage { get; set; }
+        public DateOnly DateAdded { get; set; }
 
-        
 
         public void Validate()
         {
