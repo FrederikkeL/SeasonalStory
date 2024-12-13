@@ -16,14 +16,6 @@ namespace SeasonalStoryREST.Controllers
             _repo = repo;
         }
 
-
-        // GET: api/<TempController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("get-latest")]
@@ -35,6 +27,7 @@ namespace SeasonalStoryREST.Controllers
         }
 
         // POST api/<TempController>
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] TemperatureData data)
@@ -44,6 +37,14 @@ namespace SeasonalStoryREST.Controllers
                 Value = data.Value,
                 Timestamp = DateTime.Now
             };
+            try
+            {
+                temperature.Validate();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
             var newTemperature = await _repo.AddTemperature(temperature);
             return Created("", newTemperature);
         }
