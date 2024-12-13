@@ -52,6 +52,8 @@ namespace SeasonalStoryTest
 
             await Assert.ThrowsExceptionAsync<ArgumentException>(
                 async () => await _photoRepo.Add(new Photo() { PhotoTemp = TemperatureIntervals.BelowZero, PhotoSeason = Season.Winter, UploadedImage = "" }));
+
+            await _photoRepo.Delete(addedPhoto.Id);
         }
 
         [TestMethod]
