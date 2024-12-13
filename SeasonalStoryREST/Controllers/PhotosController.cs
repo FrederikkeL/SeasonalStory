@@ -63,7 +63,7 @@ namespace SeasonalStoryREST.Controllers
         [HttpDelete("{id}")]
         public async Task <ActionResult<Photo>> Delete(int id)
         {
-            if (_repo.GetByID(id) == null) 
+            if (await _repo.GetByID(id) == null) 
             { 
                 return NotFound(id); 
             }
